@@ -8,6 +8,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 
 import javax.sql.DataSource;
 
@@ -42,11 +47,30 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST,"/transaction/delete").hasAnyRole("ADMIN","USER")
                         .requestMatchers(HttpMethod.GET,"/transaction/**").hasAnyRole("ADMIN","USER")
                         .requestMatchers(HttpMethod.GET,"/totalspending/**").hasAnyRole("ADMIN","USER")
-
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**").permitAll()
+                        .anyRequest()
+                        .authenticated()
         );
 
         http.httpBasic(Customizer.withDefaults());
         http.csrf(csrf->csrf.disable());
         return http.build();
     }
+
+    @Bean
+    public OpenAPI customOpenAPI() {
+        SecurityScheme basicAuthScheme = new SecurityScheme()
+                .type(SecurityScheme.Type.HTTP)
+                .scheme("basic");
+
+        return new OpenAPI()
+                .components(new Components().addSecuritySchemes("basicAuth", basicAuthScheme))
+                .info(new Info().title("Case Study: Expense Tracking API")
+                        .version("1.0.0")
+                        .description("OpenAPI documentation for Innova Hackathon - Case Study "))
+                .addSecurityItem(new SecurityRequirement().addList("basicAuth"));
+    }
+
+
+
 }
