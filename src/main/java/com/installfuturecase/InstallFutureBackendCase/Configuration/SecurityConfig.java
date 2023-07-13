@@ -19,7 +19,7 @@ public class SecurityConfig {
         JdbcUserDetailsManager theUserDetailsManager = new JdbcUserDetailsManager(dataSource);
 
         theUserDetailsManager
-                .setUsersByUsernameQuery("SELECT username, password, enabled FROM users WHERE username = ?");
+                .setUsersByUsernameQuery("SELECT username, password, true as enabled FROM users WHERE username = ?");
 
 
         theUserDetailsManager
@@ -42,24 +42,4 @@ public class SecurityConfig {
         http.csrf(csrf->csrf.disable());
         return http.build();
     }
-
-/*
-    @Bean
-    public InMemoryUserDetailsManager userDetailsManager() {
-
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password("{noop}admin")
-                .roles("Admin")
-                .build();
-
-        UserDetails ilker = User.builder()
-                .username("ilker")
-                .password("{noop}ilker")
-                .roles("User")
-                .build();
-
-        return new InMemoryUserDetailsManager(admin,ilker);
-    }
-*/
 }

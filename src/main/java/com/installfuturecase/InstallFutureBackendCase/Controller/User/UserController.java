@@ -43,6 +43,4 @@ public class UserController {
         return userService.getById(id);
     }
 
-
-
 }
