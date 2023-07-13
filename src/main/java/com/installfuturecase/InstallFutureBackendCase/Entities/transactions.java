@@ -2,15 +2,14 @@ package com.installfuturecase.InstallFutureBackendCase.Entities;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @Entity(name = "transactions")
 @Table(name = "transactions")
 public class transactions {
@@ -31,4 +30,7 @@ public class transactions {
 
     @Column(name = "transactiontype")
     private String transactiontype;
+
+    @Column(name = "transactiondate")
+    private String transactiondate;
 }

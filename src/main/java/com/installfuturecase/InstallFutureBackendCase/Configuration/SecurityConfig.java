@@ -36,6 +36,11 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST,"/user/update").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST,"/user/delete").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET,"/user/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET,"/transaction/list").hasAnyRole("ADMIN","USER")
+                        .requestMatchers(HttpMethod.POST,"/transaction/add").hasAnyRole("ADMIN","USER")
+                        .requestMatchers(HttpMethod.POST,"/transaction/update").hasAnyRole("ADMIN","USER")
+                        .requestMatchers(HttpMethod.POST,"/transaction/delete").hasAnyRole("ADMIN","USER")
+                        .requestMatchers(HttpMethod.GET,"/transaction/**").hasAnyRole("ADMIN","USER")
         );
 
         http.httpBasic(Customizer.withDefaults());
