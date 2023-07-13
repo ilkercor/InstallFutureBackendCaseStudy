@@ -4,10 +4,13 @@ import com.installfuturecase.InstallFutureBackendCase.DataAccess.Transaction.Tra
 import com.installfuturecase.InstallFutureBackendCase.Entities.transactions;
 import jakarta.persistence.EntityManager;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -17,7 +20,7 @@ public class TransactionDALImpl implements TransactionDAL {
     private EntityManager entityManager;
 
     @Autowired
-    public TransactionDALImpl(EntityManager entityManager){
+    public TransactionDALImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
@@ -38,7 +41,7 @@ public class TransactionDALImpl implements TransactionDAL {
     public String add(transactions transaction) {
         Session session = entityManager.unwrap(Session.class);
         session.saveOrUpdate(transaction);
-        return transaction.getTransactiondescription()+" is saved to Database ";
+        return transaction.getTransactiondescription() + " is saved to Database ";
     }
 
     @Override
@@ -46,7 +49,7 @@ public class TransactionDALImpl implements TransactionDAL {
     public String update(transactions transaction) {
         Session session = entityManager.unwrap(Session.class);
         session.saveOrUpdate(transaction);
-        return transaction.getTransactiondescription()+" is updated.";
+        return transaction.getTransactiondescription() + " is updated.";
     }
 
     @Override
@@ -55,13 +58,16 @@ public class TransactionDALImpl implements TransactionDAL {
         Session session = entityManager.unwrap(Session.class);
         transactions transactionToDelete = session.get(transactions.class, transaction.getTransactionID());
         session.delete(transactionToDelete);
-        return transaction.getTransactiondescription()+" is deleted.";
+        return transaction.getTransactiondescription() + " is deleted.";
     }
+
     @Override
     @Transactional
     public transactions getById(int id) {
-        Session session =  entityManager.unwrap(Session.class);
+        Session session = entityManager.unwrap(Session.class);
         transactions transaction = session.get(transactions.class, id);
         return transaction;
     }
+
+
 }

@@ -1,10 +1,13 @@
 package com.installfuturecase.InstallFutureBackendCase.Controller.Transaction;
 
+import com.installfuturecase.InstallFutureBackendCase.DataAccess.TransactionCalculationRepository.TransactionRepository;
 import com.installfuturecase.InstallFutureBackendCase.Entities.transactions;
 import com.installfuturecase.InstallFutureBackendCase.Service.Transaction.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -13,9 +16,12 @@ public class TransactionController {
 
     private TransactionService transactionService;
 
+    private final TransactionRepository transactionRepository;
+
     @Autowired
-    public TransactionController(TransactionService transactionService){
+    public TransactionController(TransactionService transactionService, TransactionRepository transactionRepository){
         this.transactionService = transactionService;
+        this.transactionRepository = transactionRepository;
     }
 
     @GetMapping("/list")
@@ -42,5 +48,6 @@ public class TransactionController {
     public transactions getByID(@PathVariable int id){
         return transactionService.getById(id);
     }
+
 
 }

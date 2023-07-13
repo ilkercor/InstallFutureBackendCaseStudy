@@ -2,6 +2,7 @@ package com.installfuturecase.InstallFutureBackendCase.DataAccess.Transaction;
 
 import com.installfuturecase.InstallFutureBackendCase.Entities.transactions;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface TransactionDAL {

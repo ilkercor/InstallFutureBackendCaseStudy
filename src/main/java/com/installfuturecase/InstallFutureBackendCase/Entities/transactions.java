@@ -4,6 +4,8 @@ package com.installfuturecase.InstallFutureBackendCase.Entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+
 
 @Getter
 @Setter
@@ -32,5 +34,5 @@ public class transactions {
     private String transactiontype;
 
     @Column(name = "transactiondate")
-    private String transactiondate;
+    private LocalDate transactiondate;
 }

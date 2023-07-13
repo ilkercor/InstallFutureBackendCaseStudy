@@ -1,11 +1,13 @@
 package com.installfuturecase.InstallFutureBackendCase.Service.Transaction.Impl;
 
 import com.installfuturecase.InstallFutureBackendCase.DataAccess.Transaction.TransactionDAL;
+import com.installfuturecase.InstallFutureBackendCase.DataAccess.TransactionCalculationRepository.TransactionRepository;
 import com.installfuturecase.InstallFutureBackendCase.Entities.transactions;
 import com.installfuturecase.InstallFutureBackendCase.Service.Transaction.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -13,6 +15,7 @@ import java.util.List;
 public class TransactionServiceImpl implements TransactionService {
 
     private TransactionDAL transactionDAL;
+    private TransactionRepository  transactionRepository;
 
     @Autowired
     public TransactionServiceImpl(TransactionDAL transactionDAL){
@@ -43,4 +46,6 @@ public class TransactionServiceImpl implements TransactionService {
     public List<transactions> getAll() {
         return this.transactionDAL.getAll();
     }
+
+
 }

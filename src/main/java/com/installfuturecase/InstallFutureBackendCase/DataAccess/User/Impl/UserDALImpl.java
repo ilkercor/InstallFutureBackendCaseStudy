@@ -64,6 +64,4 @@ public class UserDALImpl implements UserDAL {
         return user;
     }
 
-
-
 }
