@@ -42,6 +42,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST,"/transaction/delete").hasAnyRole("ADMIN","USER")
                         .requestMatchers(HttpMethod.GET,"/transaction/**").hasAnyRole("ADMIN","USER")
                         .requestMatchers(HttpMethod.GET,"/totalspending/**").hasAnyRole("ADMIN","USER")
+
         );
 
         http.httpBasic(Customizer.withDefaults());
