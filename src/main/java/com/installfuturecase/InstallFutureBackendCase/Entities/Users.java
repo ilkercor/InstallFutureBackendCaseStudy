@@ -13,7 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity(name = "users")
 @Table(name = "users")
-public class users {
+public class Users {
 
     @Column(name = "userID")
     @Id

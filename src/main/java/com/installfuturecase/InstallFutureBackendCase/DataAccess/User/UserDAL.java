@@ -1,14 +1,14 @@
 package com.installfuturecase.InstallFutureBackendCase.DataAccess.User;
 
-import com.installfuturecase.InstallFutureBackendCase.Entities.users;
+import com.installfuturecase.InstallFutureBackendCase.Entities.Users;
 
 import java.util.List;
 
 public interface UserDAL {
 
-    String add(users user);
-    String update(users user);
-    String delete(users user);
-    users getById(int id);
-    List<users> getAll();
+    String add(Users user);
+    String update(Users user);
+    String delete(Users user);
+    Users getById(int id);
+    List<Users> getAll();
 }

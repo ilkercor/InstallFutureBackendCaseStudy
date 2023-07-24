@@ -1,7 +1,7 @@
 package com.installfuturecase.InstallFutureBackendCase.Service.User.Impl;
 
 import com.installfuturecase.InstallFutureBackendCase.DataAccess.User.UserDAL;
-import com.installfuturecase.InstallFutureBackendCase.Entities.users;
+import com.installfuturecase.InstallFutureBackendCase.Entities.Users;
 import com.installfuturecase.InstallFutureBackendCase.Service.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,27 +19,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String add(users user) {
+    public String add(Users user) {
         return this.userDAL.add(user);
     }
 
     @Override
-    public String update(users user) {
+    public String update(Users user) {
         return this.userDAL.update(user);
     }
 
     @Override
-    public String delete(users user) {
+    public String delete(Users user) {
         return this.userDAL.delete(user);
     }
 
     @Override
-    public users getById(int id) {
+    public Users getById(int id) {
         return this.userDAL.getById(id);
     }
 
     @Override
-    public List<users> getAll() {
+    public List<Users> getAll() {
         return this.userDAL.getAll();
     }
 }

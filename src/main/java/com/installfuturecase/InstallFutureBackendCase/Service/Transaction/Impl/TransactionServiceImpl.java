@@ -2,12 +2,11 @@ package com.installfuturecase.InstallFutureBackendCase.Service.Transaction.Impl;
 
 import com.installfuturecase.InstallFutureBackendCase.DataAccess.Transaction.TransactionDAL;
 import com.installfuturecase.InstallFutureBackendCase.DataAccess.TransactionCalculationRepository.TransactionRepository;
-import com.installfuturecase.InstallFutureBackendCase.Entities.transactions;
+import com.installfuturecase.InstallFutureBackendCase.Entities.Transactions;
 import com.installfuturecase.InstallFutureBackendCase.Service.Transaction.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 
@@ -23,27 +22,27 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public String add(transactions transaction) {
+    public String add(Transactions transaction) {
         return this.transactionDAL.add(transaction);
     }
 
     @Override
-    public String update(transactions transaction) {
+    public String update(Transactions transaction) {
         return this.transactionDAL.update(transaction);
     }
 
     @Override
-    public String delete(transactions transaction) {
+    public String delete(Transactions transaction) {
         return this.transactionDAL.delete(transaction);
     }
 
     @Override
-    public transactions getById(int id) {
+    public Transactions getById(int id) {
         return this.transactionDAL.getById(id);
     }
 
     @Override
-    public List<transactions> getAll() {
+    public List<Transactions> getAll() {
         return this.transactionDAL.getAll();
     }
 

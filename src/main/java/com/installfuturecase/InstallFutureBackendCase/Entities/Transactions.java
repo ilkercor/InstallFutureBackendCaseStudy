@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @ToString
 @Entity(name = "transactions")
 @Table(name = "transactions")
-public class transactions {
+public class Transactions {
 
     @Column(name = "transactionID")
     @Id

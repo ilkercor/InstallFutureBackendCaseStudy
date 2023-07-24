@@ -1,7 +1,7 @@
 package com.installfuturecase.InstallFutureBackendCase.DataAccess.User.Impl;
 
 import com.installfuturecase.InstallFutureBackendCase.DataAccess.User.UserDAL;
-import com.installfuturecase.InstallFutureBackendCase.Entities.users;
+import com.installfuturecase.InstallFutureBackendCase.Entities.Users;
 import jakarta.persistence.EntityManager;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,15 +26,15 @@ public class UserDALImpl implements UserDAL {
 
     @Override
     @Transactional
-    public List<users> getAll() {
+    public List<Users> getAll() {
         Session session = entityManager.unwrap(Session.class);
-        List<users> usersList = session.createQuery("from users", com.installfuturecase.InstallFutureBackendCase.Entities.users.class).getResultList();
+        List<Users> usersList = session.createQuery("from users", Users.class).getResultList();
         return usersList;
     }
 
     @Override
     @Transactional
-    public String add(users user) {
+    public String add(Users user) {
         Session session = entityManager.unwrap(Session.class);
         session.saveOrUpdate(user);
         return user.getUsername()+" is saved to Database ";
@@ -42,7 +42,7 @@ public class UserDALImpl implements UserDAL {
 
     @Override
     @Transactional
-    public String update(users user) {
+    public String update(Users user) {
         Session session = entityManager.unwrap(Session.class);
         session.saveOrUpdate(user);
         return user.getUsername()+" is updated.";
@@ -50,17 +50,17 @@ public class UserDALImpl implements UserDAL {
 
     @Override
     @Transactional
-    public String delete(users user) {
+    public String delete(Users user) {
         Session session = entityManager.unwrap(Session.class);
-        users userToDelete = session.get(users.class, user.getUserID());
+        Users userToDelete = session.get(Users.class, user.getUserID());
         session.delete(userToDelete);
         return userToDelete.getUsername()+" is deleted.";
     }
     @Override
     @Transactional
-    public users getById(int id) {
+    public Users getById(int id) {
         Session session =  entityManager.unwrap(Session.class);
-        users user = session.get(users.class, id);
+        Users user = session.get(Users.class, id);
         return user;
     }
 

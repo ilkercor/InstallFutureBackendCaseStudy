@@ -1,16 +1,13 @@
 package com.installfuturecase.InstallFutureBackendCase.DataAccess.Transaction.Impl;
 
 import com.installfuturecase.InstallFutureBackendCase.DataAccess.Transaction.TransactionDAL;
-import com.installfuturecase.InstallFutureBackendCase.Entities.transactions;
+import com.installfuturecase.InstallFutureBackendCase.Entities.Transactions;
 import jakarta.persistence.EntityManager;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -30,15 +27,15 @@ public class TransactionDALImpl implements TransactionDAL {
 
     @Override
     @Transactional
-    public List<transactions> getAll() {
+    public List<Transactions> getAll() {
         Session session = entityManager.unwrap(Session.class);
-        List<transactions> transactionsList = session.createQuery("from transactions", com.installfuturecase.InstallFutureBackendCase.Entities.transactions.class).getResultList();
+        List<Transactions> transactionsList = session.createQuery("from transactions", Transactions.class).getResultList();
         return transactionsList;
     }
 
     @Override
     @Transactional
-    public String add(transactions transaction) {
+    public String add(Transactions transaction) {
         Session session = entityManager.unwrap(Session.class);
         session.saveOrUpdate(transaction);
         return transaction.getTransactiondescription() + " is saved to Database ";
@@ -46,7 +43,7 @@ public class TransactionDALImpl implements TransactionDAL {
 
     @Override
     @Transactional
-    public String update(transactions transaction) {
+    public String update(Transactions transaction) {
         Session session = entityManager.unwrap(Session.class);
         session.saveOrUpdate(transaction);
         return transaction.getTransactiondescription() + " is updated.";
@@ -54,18 +51,18 @@ public class TransactionDALImpl implements TransactionDAL {
 
     @Override
     @Transactional
-    public String delete(transactions transaction) {
+    public String delete(Transactions transaction) {
         Session session = entityManager.unwrap(Session.class);
-        transactions transactionToDelete = session.get(transactions.class, transaction.getTransactionID());
+        Transactions transactionToDelete = session.get(Transactions.class, transaction.getTransactionID());
         session.delete(transactionToDelete);
         return transaction.getTransactiondescription() + " is deleted.";
     }
 
     @Override
     @Transactional
-    public transactions getById(int id) {
+    public Transactions getById(int id) {
         Session session = entityManager.unwrap(Session.class);
-        transactions transaction = session.get(transactions.class, id);
+        Transactions transaction = session.get(Transactions.class, id);
         return transaction;
     }
 
